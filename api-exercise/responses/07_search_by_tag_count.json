@@ -1,0 +1,11 @@
+{
+  "_request": "GET https://hapi.fhir.org/baseR4/Patient?_tag=https://github.com/kubabiros595-png/implementation-discovery-kit|portfolio-demo&_summary=count",
+  "_status": 200,
+  "_date": "Tue, 17 Nov 2026 17:43:29 GMT",
+  "_note": "Only status, total and type were kept",
+  "response": {
+    "resourceType": "Bundle",
+    "total": 1,
+    "type": "searchset"
+  }
+}

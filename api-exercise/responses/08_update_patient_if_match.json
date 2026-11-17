@@ -1,0 +1,23 @@
+{
+  "_request": "PUT https://hapi.fhir.org/baseR4/Patient/829749 with header If-Match: W/\"1\"",
+  "_status": 200,
+  "_date": "Tue, 17 Nov 2026 17:43:29 GMT",
+  "_headers": {
+    "ETag": "W/\"2\""
+  },
+  "_change": "Added telecom phone +44 0000 000000 (fake number)",
+  "_note": "Only the changed fields were kept",
+  "response": {
+    "meta": {
+      "versionId": "2",
+      "lastUpdated": "2026-11-17T12:43:29.353-05:00"
+    },
+    "telecom": [
+      {
+        "system": "phone",
+        "use": "mobile",
+        "value": "+44 0000 000000"
+      }
+    ]
+  }
+}

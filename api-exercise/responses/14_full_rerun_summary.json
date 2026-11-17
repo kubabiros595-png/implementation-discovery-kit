@@ -1,0 +1,40 @@
+{
+  "_date": "2026-11-17T17:56:13Z",
+  "_context": "Full re-run of the collection flow with a unique identifier (NBH-DEMO-RUN-1794938173401)",
+  "results": [
+    {
+      "step": "01 create patient",
+      "status": 201,
+      "id": "829760"
+    },
+    {
+      "step": "02 read patient",
+      "status": 200,
+      "etag": "W/\"1\""
+    },
+    {
+      "step": "03 create observation",
+      "status": 201,
+      "id": "829761"
+    },
+    {
+      "step": "04 read observation",
+      "status": 200
+    },
+    {
+      "step": "05 search observations for patient",
+      "status": 200,
+      "total": 1
+    },
+    {
+      "step": "08 update with If-Match W/\"1\"",
+      "status": 200,
+      "etag": "W/\"2\""
+    },
+    {
+      "step": "08 same update again",
+      "status": 409,
+      "diagnostics": "HAPI-0550: HAPI-0989: Trying to update Patient/829760/_history/1 but this is not the current version"
+    }
+  ]
+}

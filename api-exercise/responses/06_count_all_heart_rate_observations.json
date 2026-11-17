@@ -1,0 +1,22 @@
+{
+  "_request": "GET https://hapi.fhir.org/baseR4/Observation?code=http://loinc.org|8867-4&_summary=count",
+  "_status": 200,
+  "_date": "Tue, 17 Nov 2026 17:43:13 GMT",
+  "_note": "Count only: no other people's records are downloaded",
+  "response": {
+    "id": "3aea9715-f848-4d64-8262-848014a22fac",
+    "meta": {
+      "lastUpdated": "2026-11-17T12:43:13.317-05:00",
+      "tag": [
+        {
+          "code": "SUBSETTED",
+          "display": "Resource encoded in summary mode",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue"
+        }
+      ]
+    },
+    "resourceType": "Bundle",
+    "total": 23555,
+    "type": "searchset"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "_request": "PUT https://hapi.fhir.org/baseR4/Patient/829749 with header If-Match: W/\"1\" (same request again, after version 2 exists)",
+  "_status": 409,
+  "_date": "Tue, 17 Nov 2026 17:43:29 GMT",
+  "response": {
+    "issue": [
+      {
+        "code": "processing",
+        "diagnostics": "HAPI-0550: HAPI-0989: Trying to update Patient/829749/_history/1 but this is not the current version",
+        "severity": "error"
+      }
+    ],
+    "resourceType": "OperationOutcome"
+  }
+}

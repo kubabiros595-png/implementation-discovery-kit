@@ -1,0 +1,420 @@
+{
+  "info": {
+    "name": "Implementation Discovery Kit — FHIR R4 exercise (HAPI public test server)",
+    "description": "Synthetic data only. Public test server: anything you send is visible to anyone and may be deleted at any time. Never send real personal data.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "00 Server capability (metadata)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/metadata?_summary=true"
+        },
+        "description": "What the server supports. First call in any FHIR integration."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('200 OK', () => pm.response.to.have.status(200));",
+              "pm.test('FHIR R4', () => pm.expect(pm.response.json().fhirVersion).to.eql('4.0.1'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "01 Create test patient",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Patient"
+        },
+        "description": "Creates a synthetic patient with a new identifier on every run and saves its id to {{patientId}}. Without a new identifier the server answers 412 (duplicate).",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Patient\",\n  \"meta\": {\n    \"tag\": [\n      {\n        \"system\": \"https://github.com/kubabiros595-png/implementation-discovery-kit\",\n        \"code\": \"portfolio-demo\",\n        \"display\": \"Synthetic test data - portfolio exercise\"\n      }\n    ]\n  },\n  \"identifier\": [\n    {\n      \"system\": \"https://example.org/fhir/sid/northbridge-demo-mrn\",\n      \"value\": \"NBH-DEMO-{{runId}}\"\n    }\n  ],\n  \"active\": true,\n  \"name\": [\n    {\n      \"use\": \"official\",\n      \"family\": \"Testpatient\",\n      \"given\": [\n        \"Demo\"\n      ]\n    }\n  ],\n  \"gender\": \"unknown\",\n  \"birthDate\": \"1980-01-01\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// The server refuses an exact duplicate (412), so every run uses a new identifier",
+              "pm.collectionVariables.set('runId', 'RUN-' + Date.now());"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('201 Created', () => pm.response.to.have.status(201));",
+              "pm.collectionVariables.set('patientId', pm.response.json().id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 Read test patient",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Patient/{{patientId}}"
+        },
+        "description": ""
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('200 OK', () => pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('patientEtag', pm.response.headers.get('ETag'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 Create heart-rate observation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Observation"
+        },
+        "description": "",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Observation\",\n  \"meta\": {\n    \"tag\": [\n      {\n        \"system\": \"https://github.com/kubabiros595-png/implementation-discovery-kit\",\n        \"code\": \"portfolio-demo\",\n        \"display\": \"Synthetic test data - portfolio exercise\"\n      }\n    ]\n  },\n  \"status\": \"final\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n          \"code\": \"vital-signs\",\n          \"display\": \"Vital Signs\"\n        }\n      ]\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"http://loinc.org\",\n        \"code\": \"8867-4\",\n        \"display\": \"Heart rate\"\n      }\n    ],\n    \"text\": \"Heart rate\"\n  },\n  \"subject\": {\n    \"reference\": \"Patient/{{patientId}}\"\n  },\n  \"effectiveDateTime\": \"2026-11-17T10:00:00Z\",\n  \"valueQuantity\": {\n    \"value\": 72,\n    \"unit\": \"beats/minute\",\n    \"system\": \"http://unitsofmeasure.org\",\n    \"code\": \"/min\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('201 Created', () => pm.response.to.have.status(201));",
+              "pm.collectionVariables.set('observationId', pm.response.json().id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 Read observation",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Observation/{{observationId}}"
+        },
+        "description": ""
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('200 OK', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 Search observations for the test patient",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Observation?subject=Patient/{{patientId}}&code=http://loinc.org|8867-4"
+        },
+        "description": ""
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Bundle with 1 match', () => pm.expect(pm.response.json().total).to.eql(1));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 Count all heart-rate observations (count only)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Observation?code=http://loinc.org|8867-4&_summary=count"
+        },
+        "description": "_summary=count returns only the total, so no other people's test records are downloaded."
+      }
+    },
+    {
+      "name": "07 Find our own test data by tag",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Patient?_tag=https://github.com/kubabiros595-png/implementation-discovery-kit|portfolio-demo&_summary=count"
+        },
+        "description": "Without Cache-Control: no-cache this server can return an older, cached count."
+      }
+    },
+    {
+      "name": "08 Update patient (If-Match version 1)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "If-Match",
+            "value": "W/\"1\""
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Patient/{{patientId}}"
+        },
+        "description": "Adds a fake phone number. Run it twice: the first run returns 200 and version 2; the second returns 409 because version 1 is no longer current. To run it again later, change If-Match to the current ETag.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Patient\",\n  \"id\": \"{{patientId}}\",\n  \"meta\": {\n    \"tag\": [\n      {\n        \"system\": \"https://github.com/kubabiros595-png/implementation-discovery-kit\",\n        \"code\": \"portfolio-demo\",\n        \"display\": \"Synthetic test data - portfolio exercise\"\n      }\n    ]\n  },\n  \"identifier\": [\n    {\n      \"system\": \"https://example.org/fhir/sid/northbridge-demo-mrn\",\n      \"value\": \"NBH-DEMO-{{runId}}\"\n    }\n  ],\n  \"active\": true,\n  \"name\": [\n    {\n      \"use\": \"official\",\n      \"family\": \"Testpatient\",\n      \"given\": [\n        \"Demo\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"phone\",\n      \"value\": \"+44 0000 000000\",\n      \"use\": \"mobile\"\n    }\n  ],\n  \"gender\": \"unknown\",\n  \"birthDate\": \"1980-01-01\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('200 on first run, 409 on second', () => pm.expect(pm.response.code).to.be.oneOf([200, 409]));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 Error: unknown id (404)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Patient/this-id-does-not-exist-12345"
+        },
+        "description": ""
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('404', () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 Error: invalid status code (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/fhir+json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Observation"
+        },
+        "description": "",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Observation\",\n  \"status\": \"not-a-real-status\",\n  \"code\": {\n    \"text\": \"x\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hapi.fhir.org/baseR4"
+    },
+    {
+      "key": "patientId",
+      "value": ""
+    },
+    {
+      "key": "observationId",
+      "value": ""
+    },
+    {
+      "key": "patientEtag",
+      "value": ""
+    },
+    {
+      "key": "runId",
+      "value": ""
+    }
+  ]
+}

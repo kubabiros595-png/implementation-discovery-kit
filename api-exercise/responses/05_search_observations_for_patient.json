@@ -1,0 +1,76 @@
+{
+  "_request": "GET https://hapi.fhir.org/baseR4/Observation?subject=Patient/829749&code=http://loinc.org|8867-4",
+  "_status": 200,
+  "_date": "Tue, 17 Nov 2026 17:43:13 GMT",
+  "response": {
+    "entry": [
+      {
+        "fullUrl": "https://hapi.fhir.org/baseR4/Observation/829750",
+        "resource": {
+          "category": [
+            {
+              "coding": [
+                {
+                  "code": "vital-signs",
+                  "display": "Vital Signs",
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "code": "8867-4",
+                "display": "Heart rate",
+                "system": "http://loinc.org"
+              }
+            ],
+            "text": "Heart rate"
+          },
+          "effectiveDateTime": "2026-11-17T10:00:00Z",
+          "meta": {
+            "lastUpdated": "2026-11-17T12:43:13.174-05:00",
+            "source": "#gsX6nkWhPoFTG4Eh",
+            "tag": [
+              {
+                "code": "portfolio-demo",
+                "display": "Synthetic test data - portfolio exercise",
+                "system": "https://github.com/kubabiros595-png/implementation-discovery-kit"
+              }
+            ],
+            "versionId": "1"
+          },
+          "resourceType": "Observation",
+          "status": "final",
+          "subject": {
+            "reference": "Patient/829749"
+          },
+          "valueQuantity": {
+            "code": "/min",
+            "system": "http://unitsofmeasure.org",
+            "unit": "beats/minute",
+            "value": 72
+          },
+          "id": "829750"
+        },
+        "search": {
+          "mode": "match"
+        }
+      }
+    ],
+    "id": "197f1bb6-43ab-4033-bc0d-ec112586ece0",
+    "link": [
+      {
+        "relation": "self",
+        "url": "https://hapi.fhir.org/baseR4/Observation?code=http%3A%2F%2Floinc.org%7C8867-4&subject=Patient%2F829749"
+      }
+    ],
+    "meta": {
+      "lastUpdated": "2026-11-17T12:43:13.264-05:00"
+    },
+    "resourceType": "Bundle",
+    "total": 1,
+    "type": "searchset"
+  }
+}

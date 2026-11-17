@@ -1,0 +1,42 @@
+{
+  "_request": "GET https://hapi.fhir.org/baseR4/Patient/829749",
+  "_status": 200,
+  "_date": "Tue, 17 Nov 2026 17:43:13 GMT",
+  "_headers": {
+    "ETag": "W/\"1\""
+  },
+  "response": {
+    "active": true,
+    "birthDate": "1980-01-01",
+    "gender": "unknown",
+    "identifier": [
+      {
+        "system": "https://example.org/fhir/sid/northbridge-demo-mrn",
+        "value": "NBH-DEMO-0001"
+      }
+    ],
+    "meta": {
+      "lastUpdated": "2026-11-17T12:43:13.084-05:00",
+      "source": "#HjmBKUbCI4Nhu1za",
+      "tag": [
+        {
+          "code": "portfolio-demo",
+          "display": "Synthetic test data - portfolio exercise",
+          "system": "https://github.com/kubabiros595-png/implementation-discovery-kit"
+        }
+      ],
+      "versionId": "1"
+    },
+    "name": [
+      {
+        "family": "Testpatient",
+        "given": [
+          "Demo"
+        ],
+        "use": "official"
+      }
+    ],
+    "resourceType": "Patient",
+    "id": "829749"
+  }
+}

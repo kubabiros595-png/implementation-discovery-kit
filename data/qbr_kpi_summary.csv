@@ -1,0 +1,19 @@
+kpi,scope,month,value,unit,numerator,denominator
+1 Completion rate,patient_app,M1,68.7,%,1544,2246
+1 Completion rate,advice_line,M1,93.9,%,2896,3083
+2 Nurse agreement rate,advice_line,M1,92.6,%,2681,2896
+3 Red-flag alerts delivered within 60 s,all,M1,98.4,%,179,182
+4 API success rate (non-5xx),all,M1,99.95,%,43493,43516
+5 Advice-line call length (mean of weekly medians),advice_line,M1,12.4,min,,baseline 14.0
+1 Completion rate,patient_app,M2,71.6,%,2376,3320
+1 Completion rate,advice_line,M2,94.2,%,3326,3529
+2 Nurse agreement rate,advice_line,M2,92.8,%,3085,3326
+3 Red-flag alerts delivered within 60 s,all,M2,85.7,%,197,230
+4 API success rate (non-5xx),all,M2,99.95,%,55877,55906
+5 Advice-line call length (mean of weekly medians),advice_line,M2,11.7,min,,baseline 14.0
+1 Completion rate,patient_app,M3,81.0,%,3665,4527
+1 Completion rate,advice_line,M3,94.4,%,4569,4841
+2 Nurse agreement rate,advice_line,M3,92.4,%,4222,4569
+3 Red-flag alerts delivered within 60 s,all,M3,97.9,%,320,327
+4 API success rate (non-5xx),all,M3,99.79,%,78478,78642
+5 Advice-line call length (mean of weekly medians),advice_line,M3,10.8,min,,baseline 14.0

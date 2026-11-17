@@ -1,0 +1,25 @@
+{
+  "_date": "2026-11-17T17:56:21Z",
+  "_context": "Three tagged test patients existed at this point: 829749, 829759, 829760",
+  "calls": [
+    {
+      "_request": "GET https://hapi.fhir.org/baseR4/Patient?_tag=https://github.com/kubabiros595-png/implementation-discovery-kit|portfolio-demo&_summary=count",
+      "_status": 200,
+      "response_total": 1
+    },
+    {
+      "_request": "Same GET with header Cache-Control: no-cache",
+      "_status": 200,
+      "response_total": 3
+    },
+    {
+      "_request": "GET https://hapi.fhir.org/baseR4/Patient?_tag=...|portfolio-demo&_elements=id with header Cache-Control: no-cache",
+      "_status": 200,
+      "response_ids": [
+        "829749",
+        "829759",
+        "829760"
+      ]
+    }
+  ]
+}

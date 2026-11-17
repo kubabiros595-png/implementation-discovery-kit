@@ -1,0 +1,15 @@
+{
+  "_request": "GET https://hapi.fhir.org/baseR4/metadata?_summary=true",
+  "_status": 200,
+  "_date": "Tue, 17 Nov 2026 17:42:53 GMT",
+  "_note": "Only the fields shown here were kept from the CapabilityStatement",
+  "fhirVersion": "4.0.1",
+  "implementation": {
+    "description": "HAPI FHIR Test/Demo Server R4 Endpoint",
+    "url": "https://hapi.fhir.org/baseR4"
+  },
+  "software": {
+    "name": "HAPI FHIR Server",
+    "version": "8.13.10-SNAPSHOT/6bd250944e/2026-09-25"
+  }
+}

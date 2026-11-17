@@ -1,0 +1,53 @@
+week,hospital,channel,assessments_started,assessments_completed,outcome_emergency_now,outcome_urgent_4h,outcome_same_day,outcome_within_3_days,outcome_self_care,red_flag_alerts,red_flag_alerts_over_60s,nurse_reviewed,nurse_urgency_changed,api_calls,api_5xx_errors,median_call_minutes
+1,Northbridge General,patient_app,275,194,5,23,52,58,56,5,0,0,0,2070,1,
+1,Northbridge General,advice_line,450,426,21,76,140,115,74,21,0,426,32,3930,3,12.6
+1,Harrowfield,patient_app,186,123,3,14,33,36,37,3,0,0,0,1359,1,
+1,Harrowfield,advice_line,280,260,13,46,85,70,46,13,0,260,23,2420,1,13.1
+2,Northbridge General,patient_app,331,227,6,27,61,68,65,6,1,0,0,2459,1,
+2,Northbridge General,advice_line,465,435,21,78,143,117,76,21,0,435,32,4035,3,12.3
+2,Harrowfield,patient_app,191,130,3,15,35,39,38,3,0,0,0,1414,0,
+2,Harrowfield,advice_line,285,267,13,48,88,72,46,13,0,267,23,2475,2,12.9
+3,Northbridge General,patient_app,364,245,7,29,66,73,70,7,1,0,0,2681,2,
+3,Northbridge General,advice_line,492,463,23,83,152,125,80,23,0,463,33,4283,4,12.6
+3,Harrowfield,patient_app,236,166,4,19,44,49,50,4,0,0,0,1774,1,
+3,Harrowfield,advice_line,298,280,14,50,92,75,49,14,0,280,22,2592,1,12.1
+4,Northbridge General,patient_app,422,298,8,35,80,89,86,8,0,0,0,3178,1,
+4,Northbridge General,advice_line,507,475,23,85,156,128,83,23,0,475,29,4403,1,12.0
+4,Harrowfield,patient_app,241,161,4,19,43,48,47,4,0,0,0,1769,0,
+4,Harrowfield,advice_line,306,290,14,52,95,78,51,14,1,290,21,2674,1,12.0
+5,Northbridge General,patient_app,483,326,9,39,88,97,93,9,0,0,0,3562,1,
+5,Northbridge General,advice_line,512,482,24,86,159,130,83,24,1,482,38,4458,4,12.2
+5,Harrowfield,patient_app,279,194,5,23,52,58,56,5,0,0,0,2086,1,
+5,Harrowfield,advice_line,329,306,15,55,100,82,54,15,1,306,23,2846,2,11.8
+6,Northbridge General,patient_app,470,332,9,39,89,99,96,9,4,0,0,3540,2,
+6,Northbridge General,advice_line,550,520,26,93,171,140,90,26,14,520,34,4800,2,12.0
+6,Harrowfield,patient_app,322,216,6,25,58,64,63,6,3,0,0,2368,1,
+6,Harrowfield,advice_line,321,305,15,54,100,82,54,15,8,305,20,2809,2,12.1
+7,Northbridge General,patient_app,550,374,11,44,100,112,107,11,1,0,0,4070,1,
+7,Northbridge General,advice_line,538,515,25,92,169,139,90,25,0,515,41,4727,4,11.4
+7,Harrowfield,patient_app,316,211,6,25,56,63,61,6,0,0,0,2319,0,
+7,Harrowfield,advice_line,338,316,15,56,104,85,56,15,0,316,27,2932,1,11.6
+8,Northbridge General,patient_app,574,453,13,54,122,135,129,13,0,0,0,4561,2,
+8,Northbridge General,advice_line,567,528,26,95,174,142,91,26,0,528,37,4908,1,11.2
+8,Harrowfield,patient_app,326,270,8,32,72,81,77,8,0,0,0,2654,2,
+8,Harrowfield,advice_line,374,354,17,63,116,95,63,17,1,354,21,3266,3,11.2
+9,Northbridge General,patient_app,540,427,12,51,115,128,121,12,0,0,0,4295,2,
+9,Northbridge General,advice_line,544,517,25,93,170,139,90,25,1,517,46,4761,3,11.1
+9,Harrowfield,patient_app,344,281,8,33,75,84,81,8,0,0,0,2781,2,
+9,Harrowfield,advice_line,341,326,16,58,107,88,57,16,0,326,26,2994,2,11.1
+10,Northbridge General,patient_app,521,429,12,51,115,128,123,12,0,0,0,4229,63,
+10,Northbridge General,advice_line,627,590,29,106,194,159,102,29,1,590,46,5458,64,11.0
+10,Harrowfield,patient_app,379,310,9,37,83,93,88,9,0,0,0,3066,2,
+10,Harrowfield,advice_line,377,357,17,64,117,96,63,17,1,357,30,3293,2,11.0
+11,Northbridge General,patient_app,593,479,14,57,129,143,136,14,1,0,0,4767,4,
+11,Northbridge General,advice_line,615,581,29,104,191,156,101,29,0,581,50,5365,1,10.9
+11,Harrowfield,patient_app,339,270,8,32,72,81,77,8,1,0,0,2706,2,
+11,Harrowfield,advice_line,395,375,18,67,123,101,66,18,0,375,32,3455,2,10.8
+12,Northbridge General,patient_app,568,467,14,56,126,140,131,14,0,0,0,4607,4,
+12,Northbridge General,advice_line,630,593,29,106,195,160,103,29,1,593,41,5485,3,10.6
+12,Harrowfield,patient_app,362,296,8,35,79,88,86,8,0,0,0,2928,1,
+12,Harrowfield,advice_line,357,333,16,59,109,89,60,16,1,333,22,3093,1,10.6
+13,Northbridge General,patient_app,539,432,12,51,116,129,124,12,0,0,0,4316,4,
+13,Northbridge General,advice_line,593,559,27,100,184,150,98,27,0,559,34,5167,1,10.1
+13,Harrowfield,patient_app,342,274,8,32,73,82,79,8,0,0,0,2738,0,
+13,Harrowfield,advice_line,362,338,16,60,111,91,60,16,0,338,20,3138,1,10.4

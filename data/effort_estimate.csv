@@ -1,0 +1,24 @@
+id,workstream,task,side,low_pd,likely_pd,high_pd,assumption
+E01,Project,Kickoff + discovery workshop + write-up,Medivane,3,4,5,One 90-minute workshop plus two follow-up calls are enough to close the open questions
+E02,Project,Weekly status + steering (20 weeks),Medivane,8,10,12,30 minutes a week plus one steering meeting a month
+E03,Project,Project management + internal sign-offs,Northbridge,10,12,16,One part-time project manager across 5 hospitals
+E04,Integration,Environments + API clients + secrets set-up,Medivane,1,2,3,Sandbox and production clients use the standard set-up process
+E05,Integration,Backend service (BFF) that calls the Medivane API,Northbridge,10,14,20,The app agency already has a backend; it adds endpoints and does not build a new service
+E06,Integration,Patient app screens for the assessment flow,Northbridge,12,16,24,Uses Medivane's question JSON; no custom question wording; English only
+E07,Integration,Webhook receiver + signature check + retries,Northbridge,3,5,8,Receiver runs inside the same backend; uses the sample code from the Medivane docs
+E08,Integration,Integration support + code review sessions,Medivane,5,7,10,Two sessions a week during build (weeks 6–11)
+E09,Clinical,Advice-line callback queue for urgent outcomes,Northbridge,4,6,9,Built in the advice line's existing task list; no telephony (CTI) integration
+E10,Identity,SSO for the clinician console (SAML or OIDC),Northbridge,2,3,5,The hospital identity team has set up SAML apps before
+E11,Identity,SSO configuration + test on the vendor side,Medivane,1,2,3,Standard SAML/OIDC set-up; no custom claims mapping
+E12,Safety,Clinical safety case + hazard log (deployment side),Northbridge,6,8,12,The Clinical Safety Officer is available about 1 day a week; Medivane supplies its manufacturer safety case
+E13,Safety,Clinical safety support + hazard workshops,Medivane,3,4,6,Medivane clinical lead joins two hazard workshops and answers questions in writing
+E14,Data protection,DPIA + data processing agreement,Northbridge,4,6,10,Legal and IG review in parallel with the build; no new legal-basis questions appear
+E15,Data protection,DPIA input + security questionnaire answers,Medivane,2,3,4,Standard security pack is accepted; one round of follow-up questions
+E16,Testing,Test plan + test scripts (incl. 40 clinical test scenarios),Medivane,3,4,6,Medivane reuses its validated scenario library and adapts 10 scenarios
+E17,Testing,End-to-end + user acceptance testing,Northbridge,8,10,15,Two test rounds; 6 nurses for 2 half-days each
+E18,Testing,Accessibility check of app screens (WCAG 2.2 AA),Northbridge,2,3,5,The app agency runs its usual audit; no testing with assistive-technology users in scope
+E19,Training,Train-the-trainer for advice-line nurses + guide,Medivane,2,3,4,Two sessions; Northbridge nurse leads train the rest
+E20,Training,Nurse training rollout (pilot hospitals),Northbridge,3,4,6,About 40 nurses; 1-hour sessions in groups of 8
+E21,Go-live,Go-live readiness review + cutover,Medivane,2,2,3,Pilot go-live at 2 hospitals on the same day
+E22,Go-live,Hypercare (first 4 weeks),Medivane,4,6,8,"Daily check in week 1, then twice a week"
+E23,Go-live,Hypercare (first 4 weeks),Northbridge,4,5,8,On-call developer from the app agency during week 1

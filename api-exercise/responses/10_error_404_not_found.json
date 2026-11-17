@@ -1,0 +1,16 @@
+{
+  "_request": "GET https://hapi.fhir.org/baseR4/Patient/this-id-does-not-exist-12345",
+  "_status": 404,
+  "_date": "Tue, 17 Nov 2026 17:43:13 GMT",
+  "_note": "text.div (an HTML copy of the same message) removed",
+  "response": {
+    "issue": [
+      {
+        "code": "processing",
+        "diagnostics": "HAPI-2001: Resource Patient/this-id-does-not-exist-12345 is not known",
+        "severity": "error"
+      }
+    ],
+    "resourceType": "OperationOutcome"
+  }
+}

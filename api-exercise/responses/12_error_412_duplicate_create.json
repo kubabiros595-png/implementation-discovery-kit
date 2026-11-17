@@ -1,0 +1,46 @@
+{
+  "_request": "POST https://hapi.fhir.org/baseR4/Patient (exactly the same body as file 01, sent again)",
+  "_status": 412,
+  "_date": "Tue, 17 Nov 2026 17:55:59 GMT",
+  "_request_body": {
+    "active": true,
+    "birthDate": "1980-01-01",
+    "gender": "unknown",
+    "identifier": [
+      {
+        "system": "https://example.org/fhir/sid/northbridge-demo-mrn",
+        "value": "NBH-DEMO-0001"
+      }
+    ],
+    "meta": {
+      "tag": [
+        {
+          "code": "portfolio-demo",
+          "display": "Synthetic test data - portfolio exercise",
+          "system": "https://github.com/kubabiros595-png/implementation-discovery-kit"
+        }
+      ]
+    },
+    "name": [
+      {
+        "family": "Testpatient",
+        "given": [
+          "Demo"
+        ],
+        "use": "official"
+      }
+    ],
+    "resourceType": "Patient"
+  },
+  "response": {
+    "issue": [
+      {
+        "code": "processing",
+        "diagnostics": "HAPI-2840: Can not create resource duplicating existing resource: Patient/829749",
+        "severity": "error"
+      }
+    ],
+    "resourceType": "OperationOutcome"
+  },
+  "_follow_up": "The same body with identifier value NBH-DEMO-0002 returned 201 and created Patient/829759"
+}

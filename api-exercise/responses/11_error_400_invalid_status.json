@@ -1,0 +1,23 @@
+{
+  "_request": "POST https://hapi.fhir.org/baseR4/Observation",
+  "_status": 400,
+  "_date": "Tue, 17 Nov 2026 17:43:13 GMT",
+  "_request_body": {
+    "code": {
+      "text": "x"
+    },
+    "resourceType": "Observation",
+    "status": "not-a-real-status"
+  },
+  "_note": "text.div (an HTML copy of the same message) removed",
+  "response": {
+    "issue": [
+      {
+        "code": "processing",
+        "diagnostics": "HAPI-0450: Failed to parse request body as JSON resource. Error was: HAPI-1821: [element=\"status\"] Invalid attribute value \"not-a-real-status\": Unknown ObservationStatus code 'not-a-real-status'",
+        "severity": "error"
+      }
+    ],
+    "resourceType": "OperationOutcome"
+  }
+}
